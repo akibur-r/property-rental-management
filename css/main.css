@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-inter);
 }
 
 :root {
@@ -187,4 +188,17 @@
 
 .block {
   display: block;
+}
+
+.container {
+  margin: 0.5rem;
+}
+
+.btn,
+.btn:hover {
+  border-radius: 0.4rem;
+}
+
+a {
+  text-decoration: none;
 }
