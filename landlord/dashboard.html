@@ -6,7 +6,64 @@
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/form.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
-    <title>PRMS Landlord Dashboard</title>
+    <title>PRMS | Landlord Dashboard</title>
   </head>
-  <body></body>
+  <body class="bg-dark">
+    <div class="container flex-y">
+      <nav class="navbar flex-x">
+        <span class="navbar__logo"
+          ><a href="../index.html"
+            ><img src="../resources/images/logo-light.png" alt="LOGO" /></a
+        ></span>
+        <span class="navbar__text"
+          ><a href="../index.html" class="txt-accent-blue">Logout</a></span
+        >
+      </nav>
+
+      <div class="dashboard flex-y fs-500 txt-white">
+        <!-- top part (greetings) -->
+        <div class="top flex-y">
+          <span class="top__greetings fw-600">Welcome, [Landlord Name]</span>
+          <span class="top__details fw-400"
+            >You have 3 properties, 2 tenants</span
+          >
+        </div>
+
+        <div class="mid flex-y">
+          <div class="mid__due">Total Rent: $400</div>
+          <div class="mid__available-properties">
+            Total booked properties: 2
+          </div>
+          <div class="mid__available-properties">
+            Total available properties: 1
+          </div>
+        </div>
+        <div class="bottom flex-y">
+          <div class="bottom__heading">Select Options</div>
+          <div class="bottom__content grid">
+            <a
+              href="add-property.html"
+              class="bottom__form__btn bg-accent-blue txt-black"
+              >Add Property</a
+            >
+            <a
+              href="remove-property.html"
+              class="bottom__form__btn bg-accent-red txt-black"
+              >Remove Property</a
+            >
+            <a
+              href="add-tenant.html"
+              class="bottom__form__btn bg-accent-blue txt-black"
+              >Add Tenant</a
+            >
+            <a
+              href="remove-tenant.html"
+              class="bottom__form__btn bg-accent-red txt-black"
+              >Remove Tenant</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

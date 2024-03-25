@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/form.css" />
-    <link rel="stylesheet" href="../css/signup.css" />
-    <title>PRMS | Register as Tenant</title>
+    <link rel="stylesheet" href="../css/login.css" />
+    <title>PRMS | Login as Tenant</title>
   </head>
   <body class="bg-dark">
     <div class="container flex-y">
@@ -24,27 +24,20 @@
 
       <div class="form-container flex-y fs-400 txt-white">
         <div class="form-container__header fw-500"></div>
-        <form action="#" class="form grid bg-light-dark">
-          <div class="form__title fw-500">Register as Tenant</div>
-          <label for="name">Name</label>
+        <form action="dashboard.html" class="form grid bg-light-dark">
+          <div class="form__title fw-500">Login as Tenant</div>
+          <label for="username">Username</label>
           <input type="text" name="name" class="bg-dark" />
 
-          <label for="username">Choose Username</label>
-          <input type="text" name="name" class="bg-dark" />
-
-          <label for="password">Choose Password</label>
+          <label for="password">Password</label>
           <input type="password" name="password" class="bg-dark" />
 
-          <input
-            type="submit"
-            value="Register"
-            class="bg-accent-blue txt-dark"
-          />
+          <input type="submit" value="Login" class="bg-accent-blue txt-dark" />
           <p class="form__msg">Test</p>
         </form>
         <div class="form-container__footer">
-          Already signed up?
-          <a href="login.html" class="txt-accent-blue">Login</a>
+          Didn't sign up yet?
+          <a href="signup.html" class="txt-accent-blue">Register</a>
         </div>
       </div>
     </div>
