@@ -1,0 +1,15 @@
+.container {
+  /* grid-template-rows: 10% 90%; */
+  gap: 10rem;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.form__title {
+  padding-top: 0;
+  margin-bottom: 1rem;
+}
+input[type="submit"] {
+  font-size: 1.1em;
+}

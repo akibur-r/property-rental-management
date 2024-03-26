@@ -1,0 +1,32 @@
+.form .upper-section__right__content {
+  position: relative;
+}
+
+.form .upper-section__right__content input[type="radio"] {
+  display: none;
+  width: 1rem;
+  height: 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+
+  position: absolute;
+}
+
+.form
+  .upper-section__right__content
+  input[type="radio"]:checked
+  + label
+  > .icon {
+  opacity: 1;
+  color: var(--clr-accent-blue);
+}
+
+.upper-section__right__content label {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.upper-section__right__content label::before {
+  content: "";
+}

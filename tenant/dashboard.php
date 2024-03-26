@@ -1,3 +1,15 @@
+<?php
+session_start();
+  include("../connection.php");
+  include("../functions.php");
+
+  $page_id = "tenant dashboard";
+  $user_data = check_login($con, $page_id);
+  $username = $user_data['tenant_username'];
+  $user_info = mysqli_query($con, "select * from tenant where tenant_username = '$username'");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,18 +24,22 @@
     <div class="container flex-y">
       <nav class="navbar flex-x">
         <span class="navbar__logo"
-          ><a href="../index.html"
+          ><a href="dashboard.php"
             ><img src="../resources/images/logo-light.png" alt="LOGO" /></a
         ></span>
         <span class="navbar__text"
-          ><a href="../index.html" class="txt-accent-blue">Logout</a></span
+          ><a href="../index.php" class="txt-accent-blue">Logout</a></span
         >
       </nav>
 
       <div class="dashboard flex-y fs-500 txt-white">
         <!-- top part (greetings) -->
         <div class="top flex-y">
-          <span class="top__greetings fw-600">Welcome, [Tenant Name]</span>
+        <span class="top__greetings fw-600">Hello, 
+            <?php
+              echo $user_data['tenant_name'];
+            ?>
+          </span>
           <span class="top__details fw-400"
             >Your rented property is Omuk Building</span
           >

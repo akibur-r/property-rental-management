@@ -29,9 +29,6 @@
   opacity: 0;
 }
 
-.form label {
-}
-
 .form input,
 form input:focus {
   width: 20rem;
@@ -50,4 +47,5 @@ form input:focus {
 
 .form input[type="submit"] {
   cursor: pointer;
+  font-weight: var(--fw-500);
 }

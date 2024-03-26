@@ -1,3 +1,42 @@
+<?php
+session_start();
+  include("../connection.php");
+  include("../functions.php");
+
+  if($_SERVER['REQUEST_METHOD'] == "POST") {
+    //something was posted
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $name = $_POST['name'];
+    $error = "";
+
+    if(!empty($username) && 
+      !empty($password) && 
+      !is_numeric($username) && 
+      !is_numeric($name) && 
+      !empty($name)) {
+      //no empty input given
+      $query = " INSERT INTO landlord (username, password, name) VALUES('$username', '$password', '$name') ";
+
+      $select = "SELECT * FROM landlord WHERE username = '$username'";
+
+      $result = mysqli_query($con, $select);
+      
+      if(mysqli_num_rows($result) > 0) {
+        $error = "User already exists";
+      }
+      else {
+        mysqli_query($con, $query);
+        header('location:login.php');
+      }
+    }
+    else {
+      $error = "Invalid information";
+    }
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,11 +51,11 @@
     <div class="container flex-y">
       <nav class="navbar flex-x">
         <span class="navbar__logo"
-          ><a href="../index.html"
+          ><a href="../index.php"
             ><img src="../resources/images/logo-light.png" alt="LOGO" /></a
         ></span>
         <span class="navbar__text"
-          ><a href="../tenant/signup.html" class="txt-accent-blue"
+          ><a href="../tenant/signup.php" class="txt-accent-blue"
             >Tenant Login</a
           ></span
         >
@@ -24,13 +63,13 @@
 
       <div class="form-container flex-y fs-400 txt-white">
         <div class="form-container__header fw-500"></div>
-        <form action="#" class="form grid bg-light-dark">
+        <form action="" method="post" class="form grid bg-light-dark">
           <div class="form__title fw-500">Register as Landlord</div>
           <label for="name">Name</label>
           <input type="text" name="name" class="bg-dark" />
 
           <label for="username">Choose Username</label>
-          <input type="text" name="name" class="bg-dark" />
+          <input type="text" name="username" class="bg-dark" />
 
           <label for="password">Choose Password</label>
           <input type="password" name="password" class="bg-dark" />
@@ -40,11 +79,17 @@
             value="Register"
             class="bg-accent-blue txt-dark"
           />
-          <p class="form__msg">Test</p>
+          <p class="error-msg">
+            <?php
+              if(!empty($error)) {
+                echo '<span>'.$error.'</span>';
+              }
+            ?>
+          </p>
         </form>
         <div class="form-container__footer">
           Already signed up?
-          <a href="login.html" class="txt-accent-blue">Login</a>
+          <a href="login.php" class="txt-accent-blue">Login</a>
         </div>
       </div>
     </div>

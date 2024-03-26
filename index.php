@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+  $_SESSION;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,12 +39,12 @@
           <span class="functions__alt-line">as</span>
           <div class="functions__buttons flex-x">
             <span class="btn functions__btn bg-accent-blue"
-              ><a href="landlord/signup.html" class="txt-dark fw-500"
+              ><a href="landlord/signup.php" class="txt-dark fw-500"
                 >Landlord</a
               ></span
             >
             <span class="btn functions__btn bg-accent-blue"
-              ><a href="tenant/signup.html" class="txt-dark fw-500"
+              ><a href="tenant/signup.php" class="txt-dark fw-500"
                 >Tenant</a
               ></span
             >

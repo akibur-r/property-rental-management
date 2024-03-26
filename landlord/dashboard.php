@@ -1,3 +1,15 @@
+<?php
+session_start();
+  include("../connection.php");
+  include("../functions.php");
+
+  $page_id = "landlord dashboard";
+  $user_data = check_login($con, $page_id);
+  $username = $user_data['username'];
+  $user_info = mysqli_query($con, "select * from landlord where username = '$username'");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,20 +24,24 @@
     <div class="container flex-y">
       <nav class="navbar flex-x">
         <span class="navbar__logo"
-          ><a href="../index.html"
+          ><a href="dashboard.php"
             ><img src="../resources/images/logo-light.png" alt="LOGO" /></a
         ></span>
         <span class="navbar__text"
-          ><a href="../index.html" class="txt-accent-blue">Logout</a></span
+          ><a href="../index.php" class="txt-accent-blue">Logout</a></span
         >
       </nav>
 
       <div class="dashboard flex-y fs-500 txt-white">
         <!-- top part (greetings) -->
         <div class="top flex-y">
-          <span class="top__greetings fw-600">Welcome, [Landlord Name]</span>
+          <span class="top__greetings fw-600">Hello, 
+            <?php
+              echo $user_data['name'];
+            ?>
+          </span>
           <span class="top__details fw-400"
-            >You have 3 properties, 2 tenants</span
+            >You have 4 properties, 2 tenants</span
           >
         </div>
 
@@ -42,22 +58,22 @@
           <div class="bottom__heading">Select Options</div>
           <div class="bottom__content grid">
             <a
-              href="add-property.html"
+              href="functions/add-property.php"
               class="bottom__form__btn bg-accent-blue txt-black"
               >Add Property</a
             >
             <a
-              href="remove-property.html"
+              href="functions/remove-property.php"
               class="bottom__form__btn bg-accent-red txt-black"
               >Remove Property</a
             >
             <a
-              href="add-tenant.html"
+              href="functions/add-tenant.php"
               class="bottom__form__btn bg-accent-blue txt-black"
               >Add Tenant</a
             >
             <a
-              href="remove-tenant.html"
+              href="functions/remove-tenant.php"
               class="bottom__form__btn bg-accent-red txt-black"
               >Remove Tenant</a
             >
