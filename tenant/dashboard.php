@@ -5,8 +5,14 @@ session_start();
 
   $page_id = "tenant dashboard";
   $user_data = check_login($con, $page_id);
+
   $username = $user_data['tenant_username'];
-  $user_info = mysqli_query($con, "select * from tenant where tenant_username = '$username'");
+  $property_rented = $user_data['property_rented'];
+  $rental_due = $user_data['rent'];
+  $landlord_username = $user_data['landlord'];
+  
+  $result = mysqli_query($con, "select * from property where property_name = '$property_rented' && property_owner = '$landlord_username'");
+  
 
 ?>
 
@@ -26,9 +32,12 @@ session_start();
         <span class="navbar__logo"
           ><a href="dashboard.php"
             ><img src="../resources/images/logo-light.png" alt="LOGO" /></a
-        ></span>
+        >
+        </span>
         <span class="navbar__text"
-          ><a href="../index.php" class="txt-accent-blue">Logout</a></span
+          ><a href="../index.php" class="txt-accent-blue">Logout as
+            <?php echo $username; ?>
+          </a></span
         >
       </nav>
 
@@ -40,16 +49,22 @@ session_start();
               echo $user_data['tenant_name'];
             ?>
           </span>
-          <span class="top__details fw-400"
-            >Your rented property is Omuk Building</span
-          >
+          <span class="top__details fw-400">
+            Your rented property is 
+            <?php
+            echo $property_rented;
+            ?>
+          </span>
         </div>
 
         <div class="mid flex-y">
-          <div class="mid__due">Rental due: $1</div>
-          <div class="mid__due-date">Expected Payment Date: 01/04/2024</div>
+          <div class="mid__due">Rental due: $
+            <?php
+              echo $rental_due;
+            ?>
+          </div>
           <div class="mid__checkout">
-            <form action="#" class="mid__form form">
+            <!-- <form action="#" class="mid__form form">
               <label for="checkout_token">Checkout</label>
               <input
                 type="text"
@@ -62,7 +77,7 @@ session_start();
                 value="Verify"
                 class="mid__form__submit btn bg-accent-blue fw-500"
               />
-            </form>
+            </form> -->
           </div>
         </div>
         <div class="bottom flex-x">

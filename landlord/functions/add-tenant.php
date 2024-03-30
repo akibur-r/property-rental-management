@@ -6,8 +6,7 @@ session_start();
   $page_id = "landlord add tenant";
   $user_data = check_login($con, $page_id);
   $landlord_username = $user_data['username'];
-  
-  $success = 0;
+
   $error = "";
   
   if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -51,7 +50,7 @@ session_start();
             }
             else {
               //phone number is okay
-              $select = "SELECT * FROM tenant CROSS JOIN property WHERE tenant.tenant_username = '$tenant_username' && property.property_owner = '$landlord_username'";
+              $select = "SELECT * FROM tenant CROSS JOIN property WHERE tenant.tenant_username = '$tenant_username'";
               $result = mysqli_query($con, $select);
           
           
@@ -83,8 +82,8 @@ session_start();
                     mysqli_query($con, $tenant_query);
                     mysqli_query($con, $property_query);
 
-                    $success = 1;
-                    // header('location:../dashboard.php');
+                    // $ = 1;
+                    header('location:../dashboard.php');
                   }
                 }
               }
@@ -124,7 +123,7 @@ session_start();
       </nav>
 
       <div class="form-container flex-y txt-white fs-400">
-        <div class="form-container__header fw-500">Add Property</div>
+        <div class="form-container__header fw-500">Add Tenant</div>
         <div class="form-container__content grid">
           <form action="" method="post" class="form flex-y fs-300">
             <div class="upper-section">
@@ -175,7 +174,7 @@ session_start();
               </div>
             </div>
             <div class="lower-section">
-              <div class="form__title fw-500">Property Info</div>
+              <div class="form__title fw-500">Caretaker Info</div>
 
               <div class="form__content flex-x">
                 <span class="lower-section__left">
@@ -197,14 +196,15 @@ session_start();
                 <span class="lower-section__right flex-y fw-500">
                 <span class="error-msg">
                   <?php
-                    if($success) {
-                      echo 
-                      '<span class="txt-white">
-                        Operation successful.
-                        <a href="../dashboard.php" class="txt-accent-red">Go Back</a>
-                      </span>';
-                    }
-                    else if(!empty($error)) {
+                    // if($success) {
+                    //   echo 
+                    //   '<span class="txt-white">
+                    //     Operation successful.
+                    //     <a href="../dashboard.php" class="txt-accent-red">Go Back</a>
+                    //   </span>';
+                    // }
+                    // else 
+                    if(!empty($error)) {
                       echo '<span>'.$error.'</span>';
                     }
                   ?>

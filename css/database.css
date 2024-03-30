@@ -4,6 +4,7 @@
 
 .bg-accent-blue-d1 {
   background-color: var(--clr-accent-blue-d1);
+  /* background-color: rebeccapurple; */
 }
 
 .navbar {
@@ -21,13 +22,17 @@
   font-size: 2em;
 }
 
+.outer-table__heading th {
+  padding-top: 2rem;
+}
+
 .outer-table__data {
   font-size: 1.1em;
 }
 
 .inner-table {
-  margin: auto;
   width: 90%;
+  margin: 0 auto;
 
   border-radius: 0.4rem;
   table-layout: fixed;

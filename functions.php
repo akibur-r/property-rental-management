@@ -64,5 +64,4 @@ function logout($con, $page_id) {
     }
 }
 
-
 ?>
