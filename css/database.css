@@ -1,0 +1,61 @@
+:root {
+  --clr-accent-blue-d1: #124e6d;
+}
+
+.bg-accent-blue-d1 {
+  background-color: var(--clr-accent-blue-d1);
+}
+
+.navbar {
+  justify-content: center;
+  align-items: center;
+}
+
+.outer-table {
+  border-radius: 0.4rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.outer-table__heading {
+  font-size: 2em;
+}
+
+.outer-table__data {
+  font-size: 1.1em;
+}
+
+.inner-table {
+  margin: auto;
+  width: 90%;
+
+  border-radius: 0.4rem;
+  table-layout: fixed;
+  margin-top: 1rem;
+}
+
+.inner-table tr,
+.inner-table th,
+.inner-table td {
+  /* margin: none; */
+  text-align: left;
+}
+
+.inner-table tr {
+  height: 2.5rem;
+}
+
+.inner-table th,
+.inner-table td {
+  border-bottom: 1px solid var(--clr-accent-blue);
+  padding-left: 0.5rem;
+}
+
+.inner-table th:not(:last-child),
+.inner-table td:not(:last-child) {
+  border-right: 1px solid var(--clr-accent-blue);
+}
+
+.inner-table__heading {
+  justify-content: space-around;
+}

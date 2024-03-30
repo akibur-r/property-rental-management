@@ -49,3 +49,11 @@ form input:focus {
   cursor: pointer;
   font-weight: var(--fw-500);
 }
+
+.error-msg {
+  /* padding-bottom: 0.5rem; */
+  /* width: 10rem; */
+  text-align: center;
+  color: var(--clr-accent-red);
+  opacity: 0;
+}

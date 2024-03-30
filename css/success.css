@@ -1,0 +1,21 @@
+.container {
+  gap: 30dvh;
+  height: 100fr;
+}
+
+.form__title {
+  font-size: 4em;
+  font-weight: var(--fw-600);
+}
+
+.form__content {
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.form__content .btn {
+  width: 15rem;
+  height: 2.5rem;
+  font-size: 1.1em;
+}

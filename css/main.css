@@ -9,6 +9,13 @@
   font-family: var(--font-inter);
 }
 
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 :root {
   /* colors */
   --clr-white: #ffffff;
@@ -205,6 +212,13 @@ a {
   padding: 0 1.5rem;
 }
 
-.navbar__text a {
+.navbar__text {
   text-decoration: underline;
+  display: flex;
+  height: 20px;
+}
+
+form input[type="submit"] {
+  display: block;
+  padding: none;
 }

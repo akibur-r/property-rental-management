@@ -5,11 +5,12 @@ session_start();
 
   $page_id = "landlord add property";
   $user_data = check_login($con, $page_id);
+  $landlord_username = $user_data['username'];
 
   $error = "";
+  $success = 0; 
   
   if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $landlord_username = $user_data['username'];
     $property_name = $_POST['property_name'];
     $address = $_POST['address'];
     $note = $_POST['note'];
@@ -51,7 +52,8 @@ session_start();
 
           mysqli_query($con, $query);
 
-          header('location:../dashboard.php');
+          $success = 1;
+          // header('location:../dashboard.php');
         }
       }
     }
@@ -74,13 +76,15 @@ session_start();
   <body class="bg-dark">
     <div class="container flex-y">
       <nav class="navbar flex-x">
-        <span class="navbar__logo"
-          ><a href="../dashboard.php"
-            ><img src="../../resources/images/logo-light.png" alt="LOGO" /></a
-        ></span>
-        <span class="navbar__text"
-          ><a href="../../index.php" class="txt-accent-blue">Logout</a></span
-        >
+        <span class="navbar__logo">
+          <a href="../dashboard.php">
+            <img src="../../resources/images/logo-light.png" alt="LOGO" /></a>
+        </span>
+        <span class="navbar__text">
+          <a href="../../index.php" class="txt-accent-blue">Logout as
+            <?php echo $landlord_username; ?>
+          </a>
+        </span>
       </nav>
 
       <div class="form-container flex-y txt-white fs-400">
@@ -163,13 +167,15 @@ session_start();
                 </span>
 
                 <span class="lower-section__right flex-y">
-                  <p class="error-msg" style="width: 8rem; padding-bottom: 0.5rem;">
+                  <span class="error-msg txt-accent-red">
                     <?php
                       if(!empty($error)) {
-                        echo '<span>'.$error.'</span>';
+                        echo '<span>'.$error.'</span>'.'
+                          <style> error-msg{opacity:1} </style>
+                        ';
                       }
                     ?>
-                  </p>
+                  </span>
                   <input
                     type="submit"
                     value="Add Property"

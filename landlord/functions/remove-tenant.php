@@ -36,7 +36,7 @@ session_start();
           $property = mysqli_fetch_assoc($result);
           $property_name = $property['property_name'];
 
-          $property_query = "UPDATE property SET property_status = 0 WHERE property_name = '$property_name' ";
+          $property_query = "UPDATE property SET property_status = 0 WHERE property_name = '$property_name' && property_owner = '$landlord_username'";
           mysqli_query($con, $property_query);
 
           $query = "DELETE FROM tenant WHERE tenant_username = '$tenant_username'";
@@ -72,9 +72,11 @@ session_start();
           ><a href="../dashboard.php"
             ><img src="../../resources/images/logo-light.png" alt="LOGO" /></a
         ></span>
-        <span class="navbar__text"
-          ><a href="../../index.php" class="txt-accent-blue">Logout</a></span
-        >
+        <span class="navbar__text">
+          <a href="../../index.php" class="txt-accent-blue">Logout as
+            <?php echo $landlord_username; ?>
+          </a>
+        </span>
       </nav>
 
       <div class="form-container flex-y fs-400 txt-white">
@@ -92,13 +94,13 @@ session_start();
             value="Remove"
             class="bg-accent-red txt-dark fw-600"
           />
-          <p class="error-msg">
+          <span class="error-msg txt-accent-red">-- 
             <?php
               if(!empty($error)) {
                 echo '<span>'.$error.'</span>';
               }
             ?>
-          </p>
+           --</span>
         </form>
       </div>
     </div>

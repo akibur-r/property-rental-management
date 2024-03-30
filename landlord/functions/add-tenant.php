@@ -2,12 +2,15 @@
 session_start();
   include("../../connection.php");
   include("../../functions.php");
-
+  
+  $page_id = "landlord add tenant";
+  $user_data = check_login($con, $page_id);
+  $landlord_username = $user_data['username'];
+  
+  $success = 0;
+  $error = "";
+  
   if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $page_id = "landlord add tenant";
-    $user_data = check_login($con, $page_id);
-
-    $landlord_username = $user_data['username'];
     
     $tenant_name = $_POST['tenant_name'];
     $phone_number = $_POST['phone_number'];
@@ -16,7 +19,6 @@ session_start();
     $property_name = $_POST['property_name'];
     $rent = $_POST['rent'];
     
-    $error = "";
   
     if(empty($tenant_name) ||
       empty($phone_number) ||
@@ -72,14 +74,17 @@ session_start();
                   }
                   else {
                     //property is available to rent
-                    $tenant_query = "INSERT INTO tenant(tenant_username, tenant_password, tenant_name, phone_number, rent, property_rented) VALUES('$tenant_username', '$tenant_password', '$tenant_name', '$phone_number', '$rent', '$property_name') ";
+                    $tenant_query = "INSERT INTO 
+                    tenant(tenant_username, tenant_password, tenant_name, phone_number, rent, property_rented, landlord) 
+                    VALUES('$tenant_username', '$tenant_password', '$tenant_name', '$phone_number', '$rent', '$property_name', '$landlord_username') ";
 
                     $property_query = "UPDATE property SET property_status = 1 WHERE property.property_name = '$property_name' && property.property_owner = '$landlord_username'";
 
                     mysqli_query($con, $tenant_query);
                     mysqli_query($con, $property_query);
 
-                    header('location:../dashboard.php');
+                    $success = 1;
+                    // header('location:../dashboard.php');
                   }
                 }
               }
@@ -102,18 +107,20 @@ session_start();
     <link rel="stylesheet" href="../../css/form.css" />
     <link rel="stylesheet" href="../../css/add-tenant.css" />
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <title>PRMS | Add Property</title>
+    <title>PRMS | Add Tenant</title>
   </head>
   <body class="bg-dark">
     <div class="container flex-y">
-      <nav class="navbar flex-x">
-        <span class="navbar__logo"
-          ><a href="../dashboard.php"
-            ><img src="../../resources/images/logo-light.png" alt="LOGO" /></a
-        ></span>
-        <span class="navbar__text"
-          ><a href="../../index.php" class="txt-accent-blue">Logout</a></span
-        >
+    <nav class="navbar flex-x">
+        <span class="navbar__logo">
+          <a href="../dashboard.php">
+            <img src="../../resources/images/logo-light.png" alt="LOGO" /></a>
+        </span>
+        <span class="navbar__text">
+          <a href="../../index.php" class="txt-accent-blue">Logout as
+            <?php echo $landlord_username; ?>
+          </a>
+        </span>
       </nav>
 
       <div class="form-container flex-y txt-white fs-400">
@@ -188,13 +195,20 @@ session_start();
                 </span>
 
                 <span class="lower-section__right flex-y fw-500">
-                <p class="error-msg">
+                <span class="error-msg">
                   <?php
-                    if(!empty($error)) {
+                    if($success) {
+                      echo 
+                      '<span class="txt-white">
+                        Operation successful.
+                        <a href="../dashboard.php" class="txt-accent-red">Go Back</a>
+                      </span>';
+                    }
+                    else if(!empty($error)) {
                       echo '<span>'.$error.'</span>';
                     }
                   ?>
-                </p>
+                </span>
                 
                 <input
                     type="submit"

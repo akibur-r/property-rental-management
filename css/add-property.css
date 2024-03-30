@@ -46,10 +46,10 @@
 
 .lower-section__right {
   justify-content: end;
-  align-items: end;
+  align-items: center;
 
   margin-bottom: 1rem;
-  width: 20rem;
+  width: auto;
 }
 
 input[type="submit"],
@@ -58,4 +58,9 @@ input[type="submit"]:focus,
 input[type="submit"]::after {
   width: auto;
   padding: 0.5rem;
+}
+
+.error-msg {
+  width: 10rem;
+  margin-bottom: 0.5rem;
 }

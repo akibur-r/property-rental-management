@@ -5,7 +5,9 @@ function check_login($con, $page_id) {
         if($page_id == "landlord dashboard" || 
             $page_id == "landlord add tenant" ||
             $page_id == "landlord remove tenant" ||
-            $page_id == "landlord add property" ) {
+            $page_id == "landlord add property"  ||
+            $page_id == "landlord remove property"
+            ) {
 
             $username = $_SESSION['username'];
             $query = "SELECT * FROM landlord WHERE username = '$username' limit 1" ;
@@ -42,6 +44,23 @@ function check_login($con, $page_id) {
             header("location: ../login.php");
         }
         die();
+    }
+}
+
+function logout($con, $page_id) {
+    if(isset($_SESSION['username'])) {
+        session_destroy();
+        if($page_id == "landlord dashboard") {  
+            header('location:../index.php');
+        }
+        else if($page_id == "landlord dashboard" || 
+        $page_id == "landlord add tenant" ||
+        $page_id == "landlord remove tenant" ||
+        $page_id == "landlord add property"  ||
+        $page_id == "landlord remove property") {
+            header('location:../../index.php');
+        }
+        $con->close();
     }
 }
 
