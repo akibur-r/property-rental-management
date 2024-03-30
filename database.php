@@ -17,7 +17,7 @@ while ($landlord = mysqli_fetch_assoc($result)) {
   array_push($landlord_username, $user);
 }
 
-
+$master_cnt = 1;  
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +45,6 @@ while ($landlord = mysqli_fetch_assoc($result)) {
     <div class="content-container  fs-400 txt-white">
       <table class="outer-table bg-accent-blue txt-dark fs-400 fw-300">
         <?php
-        $master_cnt = 1;
         foreach ($landlord_username as $user) {
           $master_cnt++;
         ?>
@@ -168,13 +167,19 @@ while ($landlord = mysqli_fetch_assoc($result)) {
           </tr>
         <?php
         }
-        if($cnt==0) {
-          echo '<h1 class="txt-dark fs-600"> The Database is Empty </h1>';
-        }
+        
         ?>
 
         
       </table>
+
+      <p class="txt-white fs-600"> 
+        <?php
+          if($master_cnt==0) {
+            echo 'The Database is Empty';
+          }
+        ?>
+      </p>
     </div>
   </div>
 </body>
